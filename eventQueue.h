@@ -14,21 +14,25 @@ class Node
     Node* left;
     Node* right;
     int height;
+    int i;
  
     Node(){
         this->lines.resize(0) ; 
         this->left = NULL ;
         this->right = NULL ;
         this->height = 1 ;
+        this->i =-1;
+
 
     }
-    Node(vector<double> point , Line line){
+    Node(vector<double> point , Line line, int i){
         this->point = point;
         if(line.upper_endpoint.size() != 0)this->lines.push_back(line) ;
         else this->lines.resize(0) ;
         this->left = NULL ;
         this->right = NULL ;
         this->height = 1 ;
+        this->i=i;
     }
     
 };
@@ -55,18 +59,18 @@ class EventQueue
         this->root = NULL;
     }
     
-    Node* Insert(Node* root, vector<double> point, Line line)//null shouldn't come here
+    Node* Insert(Node* root, vector<double> point, Line line, int i)//null shouldn't come here
     {
         if(root == NULL) 
-            return root=new Node(point, line);
+            return root=new Node(point, line, i);
         
         else if (compare(point, root->point)<0)
         {
-            root->left = this->Insert(root->left, point, line);
+            root->left = this->Insert(root->left, point, line, i);
         }
         else if (compare(point, root->point)>0)
         {
-            root->right= this->Insert(root->right, point, line);
+            root->right= this->Insert(root->right, point, line, i);
         }
         else
         {
@@ -259,7 +263,6 @@ class EventQueue
         else 
             return 0;
     }
-    
     
     
 };

@@ -14,9 +14,11 @@ class Line{
     public:
     vector<double> upper_endpoint ;
     vector<double> lower_endpoint ; 
+    
     Line(){
         upper_endpoint.resize(0) ;
         lower_endpoint.resize(0) ;
+    
     }
     Line(vector<double> endpoint_1, vector<double> endpoint_2){
         if(endpoint_1[1] > endpoint_2[1]){
@@ -45,6 +47,7 @@ class Line{
             this->lower_endpoint.push_back(endpoint_1[0]) ;
             this->lower_endpoint.push_back(endpoint_1[1]) ;
         }
+        
     }
     vector<double> intersect(Line line){
         vector<double> temp;
